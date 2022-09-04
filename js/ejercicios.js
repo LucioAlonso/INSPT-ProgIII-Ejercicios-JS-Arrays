@@ -10,9 +10,12 @@ const cantPaises = () => data.length;
 // 1
 const imprimirPaises = () => {
     /* Debe imprimir la info de todos los países (solo su nombre común y su capital) */
-    console.log("Ejercicio 1) pendiente")
-}
+    let d = new Array(cantPaises());
 
+    for(let i = 0; i < data.length; i++){
+       console.log (data[i]['name']['common'] + ". Capital: " + data[i]['capital']);
+    }
+}
 // 2
 const nombresDePaises = () => {
     /* Debe retornar un array con los nombres oficiales de cada país */
