@@ -10,34 +10,45 @@ const cantPaises = () => data.length;
 // 1
 const imprimirPaises = () => {
     /* Debe imprimir la info de todos los países (solo su nombre común y su capital) */
-    let d = new Array(cantPaises());
-
-    for(let i = 0; i < data.length; i++){
+    for(let i = 0; i < cantPaises(); i++){
        console.log (data[i]['name']['common'] + ". Capital: " + data[i]['capital']);
     }
 }
 // 2
 const nombresDePaises = () => {
-    /* Debe retornar un array con los nombres oficiales de cada país */
-    return "Ejercicio 2) pendiente";
+/* Debe retornar un array con los nombres oficiales de cada país */
+    let d = new Array(cantPaises());
+    for(let i = 0; i < cantPaises(); i++){
+       d[i] = data[i]['name']['official'];
+    }
+    return d;
 }
 
 // 3
 const nombresDeCapitales = () => {
-    /* Debe retornar un array con los nombres de las capitales de cada país */
-    return "Ejercicio 3) pendiente";
+/* Debe retornar un array con los nombres de las capitales de cada país */
+    let d = new Array(cantPaises());
+    for(let i = 0; i < cantPaises(); i++){
+       d[i] = data[i]['capital'][0];
+    }
+    return d;
 }
 
 // 4
 const poblacionTotal = () => {
-    /* Debe retornar la población total de Sudamérica */
-    return "Ejercicio 4) pendiente";
+/* Debe retornar la población total de Sudamérica */
+    let d = 0;
+    for(let i = 0; i < cantPaises(); i++){
+        d += data[i]["population"];
+    }
+    return d;
 }
 
 // 5
 const poblacionTotalMundialSinSud = (poblMundial) => {
-    /* Debe retornar la población total mundial (llega por parámetro) sin reutilizar la función 'poblacionTotal', más bien restando sucesivamente la población de cada país a la población mundial, usando 'reduce' */
-    return "Ejercicio 5) pendiente";
+/* Debe retornar la población total mundial (llega por parámetro) sin reutilizar la función 'poblacionTotal', más bien restando sucesivamente la población de cada país a la población mundial, usando 'reduce' */
+    let d = data.reduce(((acu, n, i) => acu - data[i]["population"]), poblMundial)
+    return d;
 }
 
 // 6
