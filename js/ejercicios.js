@@ -10,17 +10,13 @@ const cantPaises = () => data.length;
 // 1
 const imprimirPaises = () => {
     /* Debe imprimir la info de todos los países (solo su nombre común y su capital) */
-    for(let i = 0; i < cantPaises(); i++){
-       console.log (data[i]['name']['common'] + ". Capital: " + data[i]['capital']);
-    }
+    data.forEach(n => console.log(n['name']['common'] + ". Capital: " + n['capital']));
 }
 // 2
 const nombresDePaises = () => {
 /* Debe retornar un array con los nombres oficiales de cada país */
     let d = new Array(cantPaises());
-    for(let i = 0; i < cantPaises(); i++){
-       d[i] = data[i]['name']['official'];
-    }
+    data.forEach((n, i) => d[i] = n['name']['official']);
     return d;
 }
 
@@ -28,9 +24,7 @@ const nombresDePaises = () => {
 const nombresDeCapitales = () => {
 /* Debe retornar un array con los nombres de las capitales de cada país */
     let d = new Array(cantPaises());
-    for(let i = 0; i < cantPaises(); i++){
-       d[i] = data[i]['capital'][0];
-    }
+    data.forEach((n, i) => d[i] = n['capital'][0]);
     return d;
 }
 
@@ -38,9 +32,7 @@ const nombresDeCapitales = () => {
 const poblacionTotal = () => {
 /* Debe retornar la población total de Sudamérica */
     let d = 0;
-    for(let i = 0; i < cantPaises(); i++){
-        d += data[i]["population"];
-    }
+    data.forEach(n => d += n["population"]);
     return d;
 }
 
@@ -60,25 +52,38 @@ const todosEmpiezanLosLunes = () => {
 // 7
 const algunoNoConducePorLaDerecha = () => {
 /* Debe retornar si en alguno de los países no se conduce por la derecha (right) */
-    return data.some((n, i) => data[i]["car"]["side"] !== "Right");
+    return data.some((n, i) => data[i]["car"]["side"] !== "right");
 }
 
 // 8
 const cualesNoConducenPorLaDerecha = () => {
     /* Debe retornar a los países donde no se conduce por la derecha (right) */
-    return data.filter((n, i) => data[i]["car"]["side"] !== "Right");;
-    //me da 14 resultados, no 3 como en el test pide
+    return data.filter((n, i) => data[i]["car"]["side"] !== "right");;
 }
 
 // 9
 const cualesNoConducenPorLaDerechaSimpl = () => {
     /* Debe retornar solo los nombres comunes de los países donde no se conduce por la derecha (right) */
-    return "Ejercicio 9) pendiente";
+    let d = cualesNoConducenPorLaDerecha();
+    d.forEach((n, i) => d[i] = (n["name"]["common"]));
+    return d;
 }
 
 // 10
 const paisesQueLimitanConArgentina = () => {
     /* Debe retornar solo los nombres comunes de los países que limitan con Argentina */
     /* WARNING: Hay países que no tienen esa info. A tenerlo en cuenta para evitar errores */
-    return "Ejercicio 10) pendiente";
+    let d = data.filter(n => n["name"]["common"] === "Argentina");
+
+    d = d[0]["borders"]
+    for(let i = 0; i < d.length ; i++)
+    {
+        d[i] = data.filter(n => n["cca3"] === d[i])
+    }
+    for(let i = 0; i < d.length; i++)
+    {
+            d[i] = d[i][0]["name"]["common"];
+    }
+
+    return d;
 }
