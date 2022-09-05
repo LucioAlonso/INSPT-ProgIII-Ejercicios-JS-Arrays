@@ -53,20 +53,21 @@ const poblacionTotalMundialSinSud = (poblMundial) => {
 
 // 6
 const todosEmpiezanLosLunes = () => {
-    /* Debe retornar si todos los países inician la semana los días lunes (monday) */
-    return "Ejercicio 6) pendiente";
+/* Debe retornar si todos los países inician la semana los días lunes (monday) */
+    return data.every((n, i) => data[i]["startOfWeek"] === "monday");
 }
 
 // 7
 const algunoNoConducePorLaDerecha = () => {
-    /* Debe retornar si en alguno de los países no se conduce por la derecha (right) */
-    return "Ejercicio 7) pendiente";
+/* Debe retornar si en alguno de los países no se conduce por la derecha (right) */
+    return data.some((n, i) => data[i]["car"]["side"] !== "Right");
 }
 
 // 8
 const cualesNoConducenPorLaDerecha = () => {
     /* Debe retornar a los países donde no se conduce por la derecha (right) */
-    return "Ejercicio 8) pendiente";
+    return data.filter((n, i) => data[i]["car"]["side"] !== "Right");;
+    //me da 14 resultados, no 3 como en el test pide
 }
 
 // 9
