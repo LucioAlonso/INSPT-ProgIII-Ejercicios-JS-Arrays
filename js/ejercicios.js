@@ -15,17 +15,13 @@ const imprimirPaises = () => {
 // 2
 const nombresDePaises = () => {
 /* Debe retornar un array con los nombres oficiales de cada país */
-    let d = new Array(cantPaises());
-    data.forEach((n, i) => d[i] = n['name']['official']);
-    return d;
+    return data.map(n => n['name']['official']);;
 }
 
 // 3
 const nombresDeCapitales = () => {
 /* Debe retornar un array con los nombres de las capitales de cada país */
-    let d = new Array(cantPaises());
-    data.forEach((n, i) => d[i] = n['capital'][0]);
-    return d;
+    return data.map(n => n['capital'][0]);
 }
 
 // 4
@@ -46,44 +42,32 @@ const poblacionTotalMundialSinSud = (poblMundial) => {
 // 6
 const todosEmpiezanLosLunes = () => {
 /* Debe retornar si todos los países inician la semana los días lunes (monday) */
-    return data.every((n, i) => data[i]["startOfWeek"] === "monday");
+    return data.every(n => n["startOfWeek"] === "monday");
 }
 
 // 7
 const algunoNoConducePorLaDerecha = () => {
 /* Debe retornar si en alguno de los países no se conduce por la derecha (right) */
-    return data.some((n, i) => data[i]["car"]["side"] !== "right");
+    return data.some(n => n["car"]["side"] !== "right");
 }
 
 // 8
 const cualesNoConducenPorLaDerecha = () => {
     /* Debe retornar a los países donde no se conduce por la derecha (right) */
-    return data.filter((n, i) => data[i]["car"]["side"] !== "right");;
+    return data.filter(n => n["car"]["side"] !== "right");;
 }
 
 // 9
 const cualesNoConducenPorLaDerechaSimpl = () => {
     /* Debe retornar solo los nombres comunes de los países donde no se conduce por la derecha (right) */
     let d = cualesNoConducenPorLaDerecha();
-    d.forEach((n, i) => d[i] = (n["name"]["common"]));
-    return d;
+    return d.map((n, i) => n[i] = n["name"]["common"]);;
 }
 
 // 10
 const paisesQueLimitanConArgentina = () => {
     /* Debe retornar solo los nombres comunes de los países que limitan con Argentina */
     /* WARNING: Hay países que no tienen esa info. A tenerlo en cuenta para evitar errores */
-    let d = data.filter(n => n["name"]["common"] === "Argentina");
 
-    d = d[0]["borders"]
-    for(let i = 0; i < d.length ; i++)
-    {
-        d[i] = data.filter(n => n["cca3"] === d[i])
-    }
-    for(let i = 0; i < d.length; i++)
-    {
-            d[i] = d[i][0]["name"]["common"];
-    }
-
-    return d;
+    return data.filter( p => p.borders?.some(pString => pString === "ARG")).map(p => p.name.common);
 }
